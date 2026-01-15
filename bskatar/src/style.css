@@ -1,0 +1,354 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+}
+
+/* UI Panel - Nintendo 3DS inspired */
+.ui-panel {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  bottom: 20px;
+  background: linear-gradient(145deg, #ffffff 0%, #f0f4f8 100%);
+  border-radius: 16px;
+  padding: 16px;
+  width: 300px;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.1),
+    0 0 0 3px rgba(255, 255, 255, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border: 2px solid #e0e8f0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+.ui-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ui-panel::-webkit-scrollbar-track {
+  background: #e2e8f0;
+  border-radius: 4px;
+}
+
+.ui-panel::-webkit-scrollbar-thumb {
+  background: #a0aec0;
+  border-radius: 4px;
+}
+
+.ui-panel::-webkit-scrollbar-thumb:hover {
+  background: #718096;
+}
+
+.ui-panel h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 2px;
+  letter-spacing: -0.5px;
+}
+
+.ui-panel .subtitle {
+  font-size: 11px;
+  color: #718096;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.control-group {
+  margin-bottom: 12px;
+}
+
+.control-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.button-group {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.button-group button {
+  flex: 1 1 auto;
+  min-width: 50px;
+  padding: 6px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.button-group button:hover {
+  border-color: #cbd5e0;
+  background: linear-gradient(180deg, #f7fafc 0%, #edf2f7 100%);
+}
+
+.button-group button.active {
+  border-color: #63b3ed;
+  background: linear-gradient(180deg, #ebf8ff 0%, #bee3f8 100%);
+  color: #2b6cb0;
+  box-shadow: 0 2px 6px rgba(99, 179, 237, 0.25);
+}
+
+/* Color swatches */
+.color-options {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.color-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.color-btn:hover {
+  transform: scale(1.15);
+  border-color: #cbd5e0;
+}
+
+.color-btn.active {
+  border-color: #4299e1;
+  box-shadow:
+    inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 0 0 2px rgba(66, 153, 225, 0.3);
+  transform: scale(1.15);
+}
+
+/* Checkbox styling */
+.control-group label:has(input[type="checkbox"]) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  text-transform: none;
+  font-size: 13px;
+}
+
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: #4299e1;
+  cursor: pointer;
+}
+
+/* Config output */
+.config-output {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 2px solid #e2e8f0;
+}
+
+.config-output label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.config-output pre {
+  background: #1a202c;
+  color: #68d391;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 9px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  overflow-x: auto;
+  line-height: 1.3;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+/* Instructions hint */
+.ui-panel::after {
+  content: 'Drag to rotate • Scroll to zoom';
+  display: block;
+  margin-top: 10px;
+  font-size: 10px;
+  color: #a0aec0;
+  text-align: center;
+  padding-bottom: 4px;
+}
+
+/* Auth Section */
+.auth-section {
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-form input {
+  padding: 10px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  background: #f7fafc;
+  transition: all 0.15s ease;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: #63b3ed;
+  background: #fff;
+}
+
+.login-form input::placeholder {
+  color: #a0aec0;
+}
+
+.login-form button,
+.storage-buttons button {
+  padding: 10px 16px;
+  border: 2px solid #3182ce;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #4299e1 0%, #3182ce 100%);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.login-form button:hover,
+.storage-buttons button:hover {
+  background: linear-gradient(180deg, #63b3ed 0%, #4299e1 100%);
+  border-color: #4299e1;
+}
+
+.login-form button:disabled,
+.storage-buttons button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-hint {
+  font-size: 10px;
+  color: #718096;
+  text-align: center;
+  margin: 0;
+}
+
+.login-hint a {
+  color: #4299e1;
+  text-decoration: none;
+}
+
+.login-hint a:hover {
+  text-decoration: underline;
+}
+
+/* Logged in state */
+.logged-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.user-handle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2d3748;
+  background: #e2e8f0;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.logged-in button {
+  padding: 4px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #fff;
+  color: #718096;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.logged-in button:hover {
+  background: #f7fafc;
+  color: #4a5568;
+}
+
+.storage-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.storage-buttons button {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 11px;
+}
+
+.storage-buttons button:not(.primary-btn) {
+  background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
+  border-color: #e2e8f0;
+  color: #4a5568;
+}
+
+.storage-buttons button:not(.primary-btn):hover {
+  background: linear-gradient(180deg, #f7fafc 0%, #edf2f7 100%);
+  border-color: #cbd5e0;
+}
+
+/* Notification toast */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1a202c;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

@@ -1,0 +1,273 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+}
+
+/* Login Panel - MMBN Cyber style */
+.login-panel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(145deg, #0a0a1a 0%, #1a1a3a 100%);
+  border-radius: 4px;
+  padding: 32px;
+  width: 320px;
+  box-shadow:
+    0 0 30px rgba(0, 255, 255, 0.3),
+    0 0 60px rgba(255, 0, 255, 0.1),
+    inset 0 0 20px rgba(0, 255, 255, 0.05);
+  border: 2px solid #00ffff;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00ffff, #ff00ff, #00ffff);
+}
+
+.login-panel h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #00ffff;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  letter-spacing: 2px;
+}
+
+.login-panel .subtitle {
+  font-size: 13px;
+  color: #00ff88;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.login-panel input {
+  padding: 12px 16px;
+  border: 1px solid #00ffff;
+  border-radius: 2px;
+  font-size: 14px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  background: rgba(0, 255, 255, 0.05);
+  color: #fff;
+  transition: all 0.15s ease;
+  width: 100%;
+}
+
+.login-panel input:focus {
+  outline: none;
+  border-color: #ff00ff;
+  background: rgba(255, 0, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+.login-panel input::placeholder {
+  color: #4a6a7a;
+}
+
+.login-panel button {
+  padding: 14px 24px;
+  border: 2px solid #00ffff;
+  border-radius: 2px;
+  background: transparent;
+  color: #00ffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.login-panel button:hover {
+  background: rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.login-panel button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.login-panel .hint {
+  font-size: 11px;
+  color: #4a6a7a;
+}
+
+.login-panel .hint a {
+  color: #ff00ff;
+  text-decoration: none;
+}
+
+.login-panel .hint a:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+}
+
+/* HUD - top left info - Cyber style */
+.hud {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+}
+
+.user-info {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 8px 16px;
+  border: 1px solid #00ffff;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #00ffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  margin-bottom: 8px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+#logout-btn {
+  padding: 2px 8px;
+  font-size: 10px;
+  background: transparent;
+  border: 1px solid #ff00ff;
+  color: #ff00ff;
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: 'Consolas', 'Monaco', monospace;
+  text-transform: uppercase;
+}
+
+#logout-btn:hover {
+  background: rgba(255, 0, 255, 0.2);
+}
+
+.controls-hint {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 6px 12px;
+  border: 1px solid #ff00ff;
+  border-radius: 2px;
+  font-size: 11px;
+  color: #ff00ff;
+  font-family: 'Consolas', 'Monaco', monospace;
+}
+
+/* Post Viewer - Cyber data panel */
+.post-viewer {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(145deg, #0a0a1a 0%, #1a1a3a 100%);
+  border: 2px solid #00ffff;
+  border-radius: 2px;
+  padding: 20px 24px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow:
+    0 0 30px rgba(0, 255, 255, 0.3),
+    inset 0 0 20px rgba(0, 255, 255, 0.05);
+}
+
+.post-viewer::before {
+  content: 'DATA_RECEIVED';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background: #0a0a1a;
+  padding: 2px 8px;
+  font-size: 10px;
+  color: #00ff88;
+  font-family: 'Consolas', 'Monaco', monospace;
+  letter-spacing: 1px;
+}
+
+.post-content {
+  padding-right: 30px;
+}
+
+.post-author {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ff00ff;
+  margin-bottom: 8px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+}
+
+.post-text {
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+.post-viewer #close-post {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid #ff00ff;
+  background: transparent;
+  border-radius: 2px;
+  font-size: 18px;
+  color: #ff00ff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.post-viewer #close-post:hover {
+  background: rgba(255, 0, 255, 0.2);
+  box-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+}
+
+/* Notification toast - Cyber style */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ff88;
+  padding: 12px 24px;
+  border: 1px solid #00ff88;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Consolas', 'Monaco', monospace;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
